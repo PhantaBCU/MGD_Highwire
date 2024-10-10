@@ -1,0 +1,16 @@
+Skysphere texture
+	Name:		shanghai_bund_4k.exr
+	Source:		https://polyhaven.com/a/shanghai_bund
+	Licence:	CC0 (https://creativecommons.org/publicdomain/zero/1.0/)
+
+Tightrope material:
+	Name:		
+	Source:		ambientCG.com/a/Rope002
+	Licence:	CC0 (https://creativecommons.org/publicdomain/zero/1.0/)
+
+Character Model:
+	Name:		
+	Source:		https://readyplayer.me/
+	Licence:		
+
+Animations:
