@@ -27,4 +27,12 @@ Features
 	
 UI elements (make sketch first):
 
-	
+
+Assets used:
+
+Game Icon by Dreamcreateicons / Source: https://www.flaticon.com/free-icons/snowboard / Licence: CC0
+
+Unity Packages:
+
+Free trees https://assetstore.unity.com/packages/3d/vegetation/trees/free-trees-103208
+POLYGON Sampler Pack https://assetstore.unity.com/packages/3d/environments/polygon-sampler-pack-207048
