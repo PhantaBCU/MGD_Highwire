@@ -946,9 +946,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69321fc928915e4aadd609e1db2374b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
   maxLives: 3
-  maxSpeed: 2
-  speedStep: 2
+  InputSelected: 0
+  DebugMessagesOn: 1
+  maxHorizontalSpeed: 0.1
+  maxForwardSpeed: 20
+  startForwardSpeed: 5
+  horizontalSpeedStep: 0.1
+  boostTimer: 2
+  boostSpeedStep: 0.1
 --- !u!136 &5636507047910256096
 CapsuleCollider:
   m_ObjectHideFlags: 0

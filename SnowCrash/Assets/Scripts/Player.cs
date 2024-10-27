@@ -1,43 +1,88 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    public int maxLives;
-    private float horizontalSpeed = 0.0f;
-    private int livesRemaining;
-    public float maxSpeed = 2.0f;
-    public float speedStep = 0.1f;
-    private float score = 0.0f;
+    public Camera mainCam;
+    public GameObject playerUI;
     private Gyroscope m_Gyro;
+    private Vector3 camPos;
+    private Vector3 camTilt;
+    public int maxLives = 3;
+    public enum InputModeSelector
+    {
+        Gyro,
+        Joystick,
+        Keyboard
+    }
+    public InputModeSelector InputSelected = InputModeSelector.Gyro;
+
+    private float score = 0.0f;
+    private float gyroZ = 0.0f;
+    private float previousGyroZ = 0.0f;
+    private int livesRemaining;
+    
+    private bool gameStarted = false;
+    private bool gameOver = false;
+    
     public bool DebugMessagesOn = true;
+
+    public float maxHorizontalSpeed = 2f;
+    private float horizontalSpeed = 0.0f;
+
+    public float maxForwardSpeed = 20.0f;
+    public float startForwardSpeed = 5.0f;
+    private float forwardSpeed = 10.0f;
+    
+    public float horizontalSpeedStep = 0.01f;
+
+    private float timeSinceLastBoost = 0;
+    public float boostTimer = 2.0f;
+    public float boostSpeedStep = 0.1f;
+
     // Start is called before the first frame update
     void Start()
     {
         livesRemaining = maxLives;
         m_Gyro = Input.gyro;
         m_Gyro.enabled = true;
+        camPos = mainCam.transform.position - transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Move player according to input
-        HandleInput();
-        transform.Translate(horizontalSpeed * Time.deltaTime, 0, 0);
+        if (gameStarted && !gameOver)
+        {
+            //Move player according to input
+            HandleInput();
+            transform.Translate(horizontalSpeed * Time.deltaTime, 0, forwardSpeed * Time.deltaTime);
         
-        //Keep within bounds of playArea
-        Vector3 clampedPosition = transform.position;
-        clampedPosition.x = Mathf.Clamp(clampedPosition.x, -4.0f, 4.0f);
-        transform.position = clampedPosition;
-        DebugMessages();
+            //Keep within horizontal bounds of playArea
+            Vector3 clampedPosition = transform.position;
+            clampedPosition.x = Mathf.Clamp(clampedPosition.x, -4.0f, 4.0f);
+            transform.position = clampedPosition;
+
+            mainCam.transform.position = transform.position + camPos;
+
+            DebugMessages();
+
+            //Increase speed per boostTimer
+            timeSinceLastBoost += Time.deltaTime;
+            if (timeSinceLastBoost > boostTimer)
+            {
+                AddBoost();
+            }
+        }
     }
     private void DebugMessages()
     {
-        if (DebugMessagesOn && m_Gyro.enabled)
+        if (DebugMessagesOn)
         {
             //Output the rotation rate, attitude and the enabled state of the gyroscope as a Label
             Debug.Log("Gyro rotation rate " + m_Gyro.rotationRate);
@@ -45,18 +90,19 @@ public class Player : MonoBehaviour
             Debug.Log("Gyro enabled : " + m_Gyro.enabled);
         }
     }
-    public void removeLife()
+    public void RemoveLife()
     {
-        if (livesRemaining > 0)
+        if (livesRemaining > 1)
         {
             livesRemaining--;
+            
         }
-        else
+        else if (livesRemaining == 1)
         {
-            PlatformGenerator.instance.GameOver();
+           GameOver();
         }
     }
-    public void gainLife()
+    public void GainLife()
     {
         if (livesRemaining < maxLives)
         {
@@ -67,55 +113,144 @@ public class Player : MonoBehaviour
             score += 100;
         }
     }
-    public void addScore()
+    public void AddScore()
     {
         score += 100;
     }
-    public void removescore()
+    public void Removescore()
     {
-        score -= 100;
+        score -= 25;
     }
-    public float GetScore()
+
+
+    public void AddBoost()
     {
-        return score;
+        forwardSpeed = Mathf.Clamp(forwardSpeed += boostSpeedStep,-maxForwardSpeed,maxForwardSpeed);
+        ResetBoostTimer();
+    }
+    public void ResetSpeed()
+    {
+        forwardSpeed = startForwardSpeed;
+        ResetBoostTimer();
+    }
+    public void ResetBoostTimer()
+    {
+        timeSinceLastBoost = 0;
+    }
+    public void SetInputMode(InputModeSelector _inputMode)
+    {
+        InputSelected = _inputMode;
+    }
+
+    public void SetBaselineGyro(float _gyroInput)
+    {
+        gyroZ = _gyroInput;
+    }
+    public void StartGame()
+    {
+        gameStarted = true;
+        gameOver = false;
+        SetInputMode((InputModeSelector)InputSelected);
+        SetBaselineGyro(m_Gyro.rotationRate.z);
+        forwardSpeed = startForwardSpeed;
+    }
+    public void GameOver()
+    {
+        gameOver = true;
     }
     private void HandleInput()
     {
-//        Mathf.Clamp01(horizontalSpeed -= m_Gyro.rotationRate);
+        if (gameStarted)
+            {
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            Mathf.Clamp01(horizontalSpeed -= speedStep);
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            Mathf.Clamp01(horizontalSpeed += speedStep);
+            if (InputSelected == InputModeSelector.Gyro)
+            {
+                /*
+                previousGyroZ = gyroZ;
+                gyroZ += -m_Gyro.rotationRate.z;
+
+                float gyroDelta = Mathf.Abs(gyroZ - previousGyroZ);
+
+                if (gyroDelta > 0.01f)
+                {
+                    horizontalSpeed += gyroDelta * horizontalSpeedStep * Mathf.Sign(gyroZ);
+                }
+                */
+                gyroZ += -m_Gyro.rotationRate.z;
+                horizontalSpeed += MathF.Sign(gyroZ) * horizontalSpeedStep;
+            }
+            else if (InputSelected == InputModeSelector.Keyboard)
+            {
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    horizontalSpeed -= horizontalSpeedStep;
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    horizontalSpeed += horizontalSpeedStep;
+                }
+            }
+            horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxHorizontalSpeed, maxHorizontalSpeed);
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision with: " + collision.gameObject.tag);
+        if (DebugMessagesOn)
+        {
+            Debug.Log("Collision with: " + collision.gameObject.tag);
+        }
+
         if (collision.gameObject.tag == "Obstacle")
         {
-            removeLife();
+            RemoveLife();
+            ResetSpeed();
         }
         else if (collision.gameObject.tag == "ScoreObject")
         {
-            addScore();
+            AddScore();
         }
         else if (collision.gameObject.tag == "Gate")
         {
-            gainLife();
+            GainLife();
         }
         
         if (collision.gameObject.tag == "Railing")
         {
-            horizontalSpeed = -horizontalSpeed * 0.5f;
+            horizontalSpeed = -horizontalSpeed * 0.3f;
         }
     }
-    private void OnGUI()
+
+    public float GetScore()
     {
-        GUI.color = Color.black;
-        GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 200), "Lives: " + livesRemaining + "\nScore: "+ score);
+        return score;
+    }
+    public float GetForwardSpeed()
+    {
+        return forwardSpeed;
+    }
+    public float GetMaxForwardSpeed()
+    {
+        return maxForwardSpeed;
+    }
+    public int GetLivesRemaining()
+    {
+        return livesRemaining;
+    }
+    public float GetHorizontalSpeed()
+    {
+        return horizontalSpeed;
+    }
+    public float GetMaxHorizontalSpeed()
+    {
+        return maxHorizontalSpeed;
+    }
+
+    public bool GetGameStarted()
+    {
+        return gameStarted;
+    }
+    public bool GetGameOver()
+    {
+        return gameOver;
     }
 }

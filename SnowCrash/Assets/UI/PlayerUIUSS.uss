@@ -1,0 +1,12 @@
+.panel {
+}
+
+.lifeIcon {
+    background-image: url("project://database/Assets/Music/kenney_ui-pack/PNG/Yellow/Default/star.png?fileID=2800000&guid=692e498fef46d1941a231fddf792fe6f&type=3#star");
+}
+
+.horizontal-speed-bar {
+}
+
+.forward-speed-bar {
+}

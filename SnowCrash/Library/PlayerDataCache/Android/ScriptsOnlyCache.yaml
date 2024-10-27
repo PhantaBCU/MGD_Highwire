@@ -1,10 +1,13 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - GameOverUI
     - LevelController
+    - MenuController
     - PlatformGenerator
     - PlatformTile
     - Player
+    - PlayerUI
     Unity.InputSystem.dll:
     - UnityEngine.InputSystem.InputSettings
     - UnityEngine.InputSystem.InputSystemObject
@@ -14,9 +17,23 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
   serializedClasses:
-    Unity.InputSystem:
-    - UnityEngine.InputSystem.InputSettings/iOSSettings
-    - UnityEngine.InputSystem.iOS.PrivacyDataUsage
+    UnityEngine.UIElementsModule:
+    - UnityEngine.UIElements.Button/UxmlFactory
+    - UnityEngine.UIElements.DynamicAtlasSettings
+    - UnityEngine.UIElements.Label/UxmlFactory
+    - UnityEngine.UIElements.ProgressBar/UxmlFactory
+    - UnityEngine.UIElements.StyleComplexSelector
+    - UnityEngine.UIElements.StyleProperty
+    - UnityEngine.UIElements.StyleRule
+    - UnityEngine.UIElements.StyleSelector
+    - UnityEngine.UIElements.StyleSelectorPart
+    - UnityEngine.UIElements.StyleSheet/ImportStruct
+    - UnityEngine.UIElements.StyleSheets.Dimension
+    - UnityEngine.UIElements.StyleSheets.ScalableImage
+    - UnityEngine.UIElements.StyleValueHandle
+    - UnityEngine.UIElements.UxmlRootElementFactory
+    - UnityEngine.UIElements.VisualElement/UxmlFactory
+    - UnityEngine.UIElements.VisualElementAsset
   methodsToPreserve: []
   sceneClasses:
     Assets/Scenes/SnowCrash_Mountain_1.unity:
@@ -46,6 +63,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
     - Class: 90
@@ -57,14 +78,32 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16728}
+      Script: {instanceID: 608}
     - Class: 114
-      Script: {instanceID: 16868}
+      Script: {instanceID: 610}
     - Class: 114
-      Script: {instanceID: 17512}
+      Script: {instanceID: 612}
     - Class: 114
-      Script: {instanceID: 17566}
+      Script: {instanceID: 634}
+    - Class: 114
+      Script: {instanceID: 636}
+    - Class: 114
+      Script: {instanceID: 16730}
+    - Class: 114
+      Script: {instanceID: 16870}
+    - Class: 114
+      Script: {instanceID: 17514}
+    - Class: 114
+      Script: {instanceID: 17568}
+    - Class: 114
+      Script: {instanceID: 17932}
+    - Class: 114
+      Script: {instanceID: 28986}
+    - Class: 114
+      Script: {instanceID: 39410}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
@@ -101,7 +140,7 @@ ScriptsOnlyBuild:
     className: InputActionImporterEditor
   - hash:
       serializedVersion: 2
-      Hash: a8df9fb26bd15f7981f7b1c4654740f5
+      Hash: 6227acb02348a89b4f9a3d8d2a986bdb
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlatformGenerator
@@ -125,7 +164,7 @@ ScriptsOnlyBuild:
     className: HIDDescriptorWindow
   - hash:
       serializedVersion: 2
-      Hash: 9cbef939085ed23a24a00d4efdb5bcc5
+      Hash: 681fc1953453e5ac889eb13346664355
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlatformTile
@@ -197,7 +236,7 @@ ScriptsOnlyBuild:
     className: InputStateWindow
   - hash:
       serializedVersion: 2
-      Hash: 84a608f2c5007cead80159a532069740
+      Hash: 8223e36862e049e47025326d1b439732
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Player
@@ -209,7 +248,7 @@ ScriptsOnlyBuild:
     className: TrackedPoseDriver
   - hash:
       serializedVersion: 2
-      Hash: 245869524f09666489a7f65f370142a6
+      Hash: 636a21837bd121f76d320fdf34443fba
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: LevelController
@@ -251,6 +290,12 @@ ScriptsOnlyBuild:
     className: PlayerInputManager
   - hash:
       serializedVersion: 2
+      Hash: c9fd766e042215c6d3167a6e1ceaa6fb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MenuController
+  - hash:
+      serializedVersion: 2
       Hash: 90cf308600fb4aeb677786843453ec55
     assemblyName: Unity.InputSystem
     namespaceName: UnityEngine.InputSystem
@@ -267,7 +312,19 @@ ScriptsOnlyBuild:
     assemblyName: Unity.InputSystem
     namespaceName: UnityEngine.InputSystem.Editor
     className: PlayerInputEditor
+  - hash:
+      serializedVersion: 2
+      Hash: e70edb8b4656e9a3aa440e5153982818
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerUI
+  - hash:
+      serializedVersion: 2
+      Hash: 4fa166f53d52d84274922f8223868a25
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameOverUI
   platform: 13
   scenePathNames:
   - Assets/Scenes/SnowCrash_Mountain_1.unity
-  playerPath: C:/Users/Invate/Documents/GitHub/MGD_Highwire/SnowCrash/Test1.apk
+  playerPath: C:/Users/Invate/Documents/GitHub/MGD_Highwire/SnowCrash/Build/SC_Test3.apk

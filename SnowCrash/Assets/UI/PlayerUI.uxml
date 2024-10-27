@@ -1,0 +1,39 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PlayerUIUSS.uss?fileID=7433441132597879392&amp;guid=859ed5e79818f0443b9140e74e110374&amp;type=3#PlayerUIUSS" />
+    <ui:VisualElement name="panel" class="panel" style="flex-grow: 1; flex-basis: initial; flex-direction: row;">
+        <ui:VisualElement name="lifeCounter" style="flex-grow: 1; align-items: auto; flex-direction: row;">
+            <ui:Label tabindex="-1" text="Lives&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="lifeLabel" class="playerUILabel" style="flex-direction: row; height: 110px; width: 280px; -unity-font: url(&quot;project://database/Assets/UI/Font/Kenney%20Future.ttf?fileID=12800000&amp;guid=da8575c77492dff4cb0422a1f28440bc&amp;type=3#Kenney Future&quot;); -unity-font-style: bold; font-size: 24px;">
+                <ui:VisualElement name="life1" class="lifeIcon" style="flex-grow: 1; width: 95px; height: 76px; align-self: flex-start;" />
+                <ui:VisualElement name="life2" class="lifeIcon" style="flex-grow: 1; width: 95px; height: 76px;" />
+                <ui:VisualElement name="life3" class="lifeIcon" style="flex-grow: 1; width: 95px; height: 76px;" />
+            </ui:Label>
+            <ui:VisualElement name="space" style="flex-grow: 1; width: 146px; height: -266px;" />
+            <ui:VisualElement name="space" style="flex-grow: 1; width: 146px; height: -266px;" />
+            <ui:VisualElement name="space" style="flex-grow: 1; width: 146px; height: -266px;" />
+            <ui:VisualElement name="space" style="flex-grow: 1; width: 146px; height: -266px;" />
+            <ui:VisualElement name="space" style="flex-grow: 1; width: 146px; height: -266px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="speedometer" style="flex-grow: 1; width: 1050px; flex-direction: column-reverse;">
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:ProgressBar value="50" name="lrBar" class="horizontal-speed-bar" style="-unity-background-scale-mode: stretch-to-fill;" />
+            <ui:ProgressBar value="50" name="speedBar" class="forward-speed-bar" />
+            <ui:Label tabindex="-1" text="SPEED" parse-escape-sequences="true" display-tooltip-when-elided="true" name="speedLabel" style="-unity-text-align: upper-center; height: 27px; -unity-font: url(&quot;project://database/Assets/UI/Font/Kenney%20Future.ttf?fileID=12800000&amp;guid=da8575c77492dff4cb0422a1f28440bc&amp;type=3#Kenney Future&quot;); -unity-font-style: bold;" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="timer" style="flex-grow: 1; width: 965px;">
+            <ui:Label tabindex="-1" text="Time Remaining: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="timerLabel" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:VisualElement name="space" style="flex-grow: 1;" />
+            <ui:Label tabindex="-1" text="Score: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="scoreLabel" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

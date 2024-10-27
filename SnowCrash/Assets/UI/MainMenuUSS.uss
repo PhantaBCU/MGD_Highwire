@@ -1,0 +1,35 @@
+.panel {
+}
+
+.menu {
+}
+
+.unity-button {
+    max-width: none;
+    background-image: url("project://database/Assets/Music/kenney_ui-pack/PNG/Blue/Double/button_rectangle_depth_gloss.png?fileID=2800000&guid=3f715491754a3e9489a02dc8b9ca421d&type=3#button_rectangle_depth_gloss");
+    -unity-font: url("project://database/Assets/Music/kenney_ui-pack/Font/Kenney%20Future.ttf?fileID=12800000&guid=3e8b0cbf87ef01a45b99e6eb9f1dadd2&type=3#Kenney Future");
+    -unity-font-style: bold;
+    font-size: 25px;
+    width: 200px;
+}
+
+.logo {
+    background-image: url('project://database/Assets/Textures/SC_Logo.png?fileID=2800000&guid=0698fd17fe5227648b3bab544ef482aa&type=3#SC_Logo');
+}
+
+.unity-button:hover {
+    scale: 0.9 0.9;
+    rotate: 0;
+    transition-property: scale;
+    transition-duration: 0.2s;
+    width: 200px;
+    background-image: url("project://database/Assets/UI/PNG/Yellow/Double/button_rectangle_depth_gradient.png?fileID=2800000&guid=b6a65ac7217b659409b3b0406729d41d&type=3#button_rectangle_depth_gradient");
+}
+
+.unity-button:active {
+    background-image: url("project://database/Assets/UI/PNG/Green/Double/button_rectangle_depth_gloss.png?fileID=2800000&guid=be895afbd374ed549952a04fe37c9218&type=3#button_rectangle_depth_gloss");
+    width: 200px;
+    scale: 1.2 1.2;
+    transition-property: scale;
+    transition-duration: 0.25s;
+}

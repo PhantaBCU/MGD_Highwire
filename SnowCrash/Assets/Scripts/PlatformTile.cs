@@ -6,6 +6,7 @@ public class PlatformTile: MonoBehaviour
 {
     public Transform startPoint;
     public Transform endPoint;
+    public Transform[] spawnPoints;
     public GameObject[] obstacles;
 
     public void SpawnObstacles()
@@ -14,14 +15,12 @@ public class PlatformTile: MonoBehaviour
         DeactivateObstacles();
         //Set up random generator
         System.Random random = new System.Random();
-        int randomInt = random.Next(0, obstacles.Length);
-
-        float randomX = Mathf.Round((float)random.NextDouble()) * 4 - 2;
-        float randomZ = Mathf.Round((float)random.NextDouble()) * 12 - 6;
+        int randomObstacleInt = random.Next(0, obstacles.Length);
+        int randomSpawnPointInt = random.Next(0, spawnPoints.Length);
 
         //Add a random number of obstacles to the platform as it spawns
-        obstacles[randomInt].SetActive(true);
-        obstacles[randomInt].transform.Translate(new Vector3(randomX, 0, randomZ));
+        obstacles[randomObstacleInt].SetActive(true);
+        obstacles[randomObstacleInt].transform.Translate(spawnPoints[randomSpawnPointInt].localPosition);
     }
     public void DeactivateObstacles()
     {
