@@ -809,7 +809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5326789791252505155, guid: cfb5b0bedc3601946b216974a93b9c6f, type: 3}
       propertyPath: InputSelected
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5326789791252505155, guid: cfb5b0bedc3601946b216974a93b9c6f, type: 3}
       propertyPath: boostSpeedStep
